@@ -568,21 +568,22 @@ export class BillingService {
             };
         }
 
-        // Vérifier si la facture est payée
-        if (invoice.status !== InvoiceStatus.PAID) {
+        // Si la facture est déjà payée
+        if (invoice.status === InvoiceStatus.PAID) {
             return {
-                ready: false,
+                ready: true,
                 parcel,
                 invoice,
-                message: `Facture impayée. Montant dû: $${parseFloat(invoice.total.toString()).toFixed(2)}`,
+                message: 'Colis déjà payé et prêt pour retrait',
             };
         }
 
+        // Si le colis est READY et la facture est PENDING, c'est prêt pour paiement cash
         return {
             ready: true,
             parcel,
             invoice,
-            message: 'Colis prêt pour retrait',
+            message: `Colis prêt. Facture à payer: $${parseFloat(invoice.total.toString()).toFixed(2)}`,
         };
     }
 

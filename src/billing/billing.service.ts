@@ -555,9 +555,9 @@ export class BillingService {
         const invoice = await this.invoiceRepository
             .createQueryBuilder('invoice')
             .leftJoinAndSelect('invoice.items', 'items')
-            .leftJoinAndSelect('items.parcel', 'parcel')
+            .leftJoinAndSelect('items.parcel', 'itemParcel')
             .leftJoinAndSelect('invoice.payments', 'payments')
-            .where('parcel.id = :parcelId', { parcelId: parcel.id })
+            .where('itemParcel.id = :parcelId', { parcelId: parcel.id })
             .getOne();
 
         if (!invoice) {

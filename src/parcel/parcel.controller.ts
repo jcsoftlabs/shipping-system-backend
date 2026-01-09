@@ -184,8 +184,9 @@ export class ParcelController {
     }
 
     /**
-     * Récupérer l'historique d'un colis
+     * Récupérer l'historique d'un colis (PUBLIC - pour tracking)
      */
+    @Public()
     @Get(':id/history')
     @ApiOperation({ summary: 'Récupérer l\'historique d\'un colis' })
     async getHistory(@Param('id') id: string) {

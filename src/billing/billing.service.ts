@@ -520,7 +520,7 @@ export class BillingService {
         }
 
         // Vérifier le statut du colis
-        if (parcel.status !== ParcelStatus.AVAILABLE && parcel.status !== ParcelStatus.DELIVERED) {
+        if (parcel.status !== ParcelStatus.READY && parcel.status !== ParcelStatus.DELIVERED) {
             return {
                 ready: false,
                 parcel,

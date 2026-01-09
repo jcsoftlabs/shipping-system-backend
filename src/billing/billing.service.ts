@@ -397,7 +397,30 @@ export class BillingService {
             invoice.paidAt = new Date();
             await manager.save(invoice);
 
-            this.logger.log(`Cash payment recorded for invoice ${invoiceId}`);
+            // 6. Marquer les colis comme DELIVERED (client présent au bureau)
+            for (const item of invoice.items) {
+                if (item.parcel && item.parcel.status !== ParcelStatus.DELIVERED) {
+                    const oldStatus = item.parcel.status;
+                    item.parcel.status = ParcelStatus.DELIVERED;
+                    item.parcel.deliveredAt = new Date();
+                    await manager.save(Parcel, item.parcel);
+
+                    // Créer une entrée dans l'historique
+                    const history = manager.create(ParcelStatusHistory, {
+                        parcelId: item.parcel.id,
+                        status: ParcelStatus.DELIVERED,
+                        location: 'Bureau - Retrait client',
+                        notes: `Colis remis au client lors du paiement cash. Reçu par: ${receivedBy}`,
+                    });
+                    await manager.save(ParcelStatusHistory, history);
+
+                    this.logger.log(
+                        `Parcel ${item.parcel.trackingNumber} marked as DELIVERED: ${oldStatus} → DELIVERED (cash payment pickup)`
+                    );
+                }
+            }
+
+            this.logger.log(`Cash payment recorded for invoice ${invoiceId} - Parcels marked as delivered`);
 
             return payment;
         });

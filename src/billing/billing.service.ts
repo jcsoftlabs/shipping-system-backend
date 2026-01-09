@@ -574,7 +574,7 @@ export class BillingService {
                 ready: false,
                 parcel,
                 invoice,
-                message: `Facture impayée. Montant dû: $${invoice.total.toFixed(2)}`,
+                message: `Facture impayée. Montant dû: $${parseFloat(invoice.total.toString()).toFixed(2)}`,
             };
         }
 

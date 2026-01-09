@@ -12,6 +12,7 @@ import { AddressModule } from './address/address.module';
 import { StripeModule } from './stripe/stripe.module';
 import { UserModule } from './user/user.module';
 import { SettingsModule } from './settings/settings.module';
+import { AdminModule } from './admin/admin.module';
 
 // Import entities
 import { User } from './entities/user.entity';
@@ -86,6 +87,9 @@ import { HubAddress } from './entities/hub-address.entity';
         PhotoModule,
         AddressModule,
         SettingsModule,
+        AdminModule,
     ],
 })
+export class AppModule { }
+
 export class AppModule { }

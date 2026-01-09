@@ -24,6 +24,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { Public } from '../auth/decorators/public.decorator';
 import { UserRole } from '../entities/user.entity';
 import { ParcelStatus } from '../entities/parcel.entity';
 
@@ -58,10 +59,11 @@ export class ParcelController {
     }
 
     /**
-     * Rechercher un colis par numéro de tracking
+     * Rechercher un colis par numéro de tracking (PUBLIC - pas d'authentification requise)
      */
+    @Public()
     @Get('tracking/:trackingNumber')
-    @ApiOperation({ summary: 'Rechercher un colis par numéro de tracking' })
+    @ApiOperation({ summary: 'Rechercher un colis par numéro de tracking (public)' })
     @ApiResponse({ status: 200, description: 'Colis trouvé' })
     @ApiResponse({ status: 404, description: 'Colis non trouvé' })
     async findByTracking(@Param('trackingNumber') trackingNumber: string) {

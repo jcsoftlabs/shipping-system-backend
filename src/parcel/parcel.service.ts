@@ -200,7 +200,18 @@ export class ParcelService {
 
             // 3. Mettre à jour le colis
             parcel.status = dto.newStatus;
-            parcel.currentLocation = dto.location || parcel.currentLocation;
+
+            // Mettre à jour la localisation selon le statut
+            if (dto.location) {
+                parcel.currentLocation = dto.location;
+            } else {
+                // Auto-update location based on status
+                if (dto.newStatus === ParcelStatus.READY) {
+                    parcel.currentLocation = 'Port-au-Prince, Haïti - Prêt pour retrait';
+                } else if (dto.newStatus === ParcelStatus.DELIVERED) {
+                    parcel.currentLocation = 'Livré au client';
+                }
+            }
 
             if (dto.newStatus === ParcelStatus.SHIPPED && !parcel.shippedAt) {
                 parcel.shippedAt = new Date();

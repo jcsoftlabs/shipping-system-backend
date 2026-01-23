@@ -95,7 +95,7 @@ async function seed() {
 
         // 2. Create Address Counters
         console.log('\n📍 Creating address counters...');
-        const hubs = ['MIA', 'NYC', 'LAX'];
+        const hubs = ['MIA', 'NYC', 'LAX', 'NMB'];
         for (const hub of hubs) {
             await dataSource.query(
                 `INSERT INTO address_counters (hub, current_sequence, created_at, updated_at)
@@ -120,6 +120,7 @@ async function seed() {
                 { street: '1234 Ocean Drive', city: 'Miami', state: 'FL', zip: '33139' },
                 { street: '5678 Broadway', city: 'New York', state: 'NY', zip: '10019' },
                 { street: '9012 Sunset Blvd', city: 'Los Angeles', state: 'CA', zip: '90028' },
+                { street: '2175 NE 169 Street apt 318', city: 'North Miami Beach', state: 'FL', zip: '33162' },
             ];
 
             const addr = usAddresses[i % usAddresses.length];

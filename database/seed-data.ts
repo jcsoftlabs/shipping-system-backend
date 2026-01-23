@@ -3,10 +3,10 @@ import * as bcrypt from 'bcrypt';
 
 const dataSource = new DataSource({
     type: 'postgres',
-    host: process.env.DATABASE_HOST || 'tramway.proxy.rlwy.net',
-    port: parseInt(process.env.DATABASE_PORT || '27962'),
+    host: process.env.DATABASE_HOST || 'maglev.proxy.rlwy.net',
+    port: parseInt(process.env.DATABASE_PORT || '15389'),
     username: process.env.DATABASE_USER || 'postgres',
-    password: process.env.DATABASE_PASSWORD || 'fhgbCqlEhXtWKPUWXVaFklveSDymNgDr',
+    password: process.env.DATABASE_PASSWORD || 'OKXycGUUUmwoDImyaZlSKkTrJFqXSuUf',
     database: process.env.DATABASE_NAME || 'railway',
     ssl: { rejectUnauthorized: false },
 });

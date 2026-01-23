@@ -30,7 +30,7 @@ export class AddressGenerationService {
      * Génère une nouvelle adresse personnalisée pour un utilisateur
      * Format: HT-{HUB}-{CLIENT_ID}/A
      */
-    async generateAddress(userId: string, hub: string = 'MIA'): Promise<CustomAddress> {
+    async generateAddress(userId: string, hub: string = 'NMB'): Promise<CustomAddress> {
         this.logger.log(`Generating address for user ${userId} at hub ${hub}`);
 
         return await this.dataSource.transaction(async (manager) => {

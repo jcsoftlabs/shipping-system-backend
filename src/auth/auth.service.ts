@@ -46,7 +46,7 @@ export class AuthService {
 
         // Générer automatiquement une adresse pour le nouveau client
         try {
-            await this.addressService.generateAddress(savedUser.id, 'MDL'); // Hub par défaut: Medley
+            await this.addressService.generateAddress(savedUser.id, 'NMB'); // Hub par défaut: North Miami Beach
             this.logger.log(`Address auto-generated for new user ${savedUser.email}`);
         } catch (error) {
             this.logger.warn(`Failed to auto-generate address for user ${savedUser.email}: ${error.message}`);

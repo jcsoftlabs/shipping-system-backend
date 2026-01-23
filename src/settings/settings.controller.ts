@@ -14,6 +14,7 @@ import { SettingsService } from './settings.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { Public } from '../auth/decorators/public.decorator';
 import { UserRole } from '../entities/user.entity';
 
 @ApiTags('Settings')
@@ -31,6 +32,29 @@ export class SettingsController {
         return {
             success: true,
             data: settings,
+        };
+    }
+
+    @Public()
+    @Get('branding')
+    @ApiOperation({ summary: 'Get public branding information (no auth required)' })
+    async getPublicBranding() {
+        const settings = await this.settingsService.getSettings();
+
+        // Return only public branding information
+        return {
+            success: true,
+            data: {
+                companyName: settings.companyName,
+                companyAddress: settings.companyAddress,
+                companyCity: settings.companyCity,
+                companyState: settings.companyState,
+                companyZipcode: settings.companyZipcode,
+                companyPhone: settings.companyPhone,
+                companyEmail: settings.companyEmail,
+                logoUrl: settings.logoUrl,
+                receiptFooter: settings.receiptFooter,
+            },
         };
     }
 

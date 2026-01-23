@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { ParcelModule } from './parcel/parcel.module';
 import { NotificationModule } from './notification/notification.module';
@@ -32,6 +33,7 @@ import { CompanySettings } from './entities/company-settings.entity';
 import { HubAddress } from './entities/hub-address.entity';
 
 @Module({
+    controllers: [AppController],
     imports: [
         // Configuration globale
         ConfigModule.forRoot({

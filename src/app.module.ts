@@ -91,5 +91,3 @@ import { HubAddress } from './entities/hub-address.entity';
     ],
 })
 export class AppModule { }
-
-export class AppModule { }

@@ -30,7 +30,7 @@ export class SettingsService {
                 companyState: 'Haiti',
                 companyZipcode: 'HT6110',
                 companyPhone: '+509 1234-5678',
-                companyEmail: 'contact@haitishipping.com',
+                companyEmail: 'contact@shipping.com',
                 receiptFooter: 'Merci pour votre confiance! Thank you for your business!',
             });
             settings = await this.settingsRepository.save(settings);
